@@ -52,7 +52,7 @@ function flagTone(flag) {
   return { bg: "#ECFDF5", border: "#A7F3D0", text: "#047857" };
 }
 
-function Field({ label, value, setValue, prefix = "", suffix = "", placeholder = "" }) {
+function Field({ label, value, setValue, prefix = "", suffix = "" }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <label style={{ fontSize: 13, color: "#475569", fontWeight: 600 }}>{label}</label>
@@ -74,7 +74,6 @@ function Field({ label, value, setValue, prefix = "", suffix = "", placeholder =
         <input
           type="number"
           value={value}
-          placeholder={placeholder}
           onChange={(e) => setValue(Number(e.target.value || 0))}
           style={{
             width: "100%",
@@ -238,7 +237,7 @@ export default function Page() {
     const predictability = Math.round(
       clamp(100 - (top3 * 0.3 + founder * 0.3 + (100 - forecast) * 0.4), 0, 100)
     );
-    return { baseExposure, founderMult, forecastMult, riskPct, revenueAtRisk, marginLeakage, predictability };
+    return { riskPct, revenueAtRisk, marginLeakage, predictability };
   }, [revenue, top3, margin, targetMargin, founder, forecast]);
 
   const risk = riskTone(metrics.riskPct);
@@ -254,7 +253,7 @@ export default function Page() {
     const payload = {
       "Company Name": companyName,
       Email: email,
-      Revenue: revenue,
+      "Revenue": revenue,
       "Top3 %": top3,
       "Margin %": margin,
       "Target Margin %": targetMargin,
@@ -277,15 +276,16 @@ export default function Page() {
         body: JSON.stringify(payload),
       });
 
+      const text = await res.text();
+
       if (!res.ok) {
-        const text = await res.text();
         throw new Error(text || "Submission failed");
       }
 
       setSubmitted(true);
     } catch (err) {
       console.error(err);
-      setSubmitError("Lead save failed. Check your Airtable env vars, table name, and API route.");
+      setSubmitError(err.message || "Lead save failed");
     }
   }
 
@@ -496,6 +496,8 @@ export default function Page() {
                     fontSize: 13,
                     lineHeight: 1.6,
                     color: "#B91C1C",
+                    whiteSpace: "pre-wrap",
+                    overflowWrap: "anywhere",
                   }}
                 >
                   {submitError}
