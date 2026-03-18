@@ -1,29 +1,48 @@
 export async function POST(req) {
-  const body = await req.json();
+  try {
+    const body = await req.json();
 
-  const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN;
-  const BASE_ID = process.env.AIRTABLE_BASE_ID;
-  const TABLE = process.env.AIRTABLE_TABLE_NAME;
+    const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN;
+    const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
+    const AIRTABLE_TABLE_NAME = process.env.AIRTABLE_TABLE_NAME;
 
-  const response = await fetch(
-    `https://api.airtable.com/v0/${BASE_ID}/${TABLE}`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${AIRTABLE_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        records: [
-          {
-            fields: body,
-          },
-        ],
-      }),
+    if (!AIRTABLE_TOKEN || !AIRTABLE_BASE_ID || !AIRTABLE_TABLE_NAME) {
+      return new Response("Missing Airtable environment variables", {
+        status: 500,
+      });
     }
-  );
 
-  const data = await response.json();
+    const response = await fetch(
+      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          records: [
+            {
+              fields: body,
+            },
+          ],
+        }),
+      }
+    );
 
-  return Response.json(data);
+    const text = await response.text();
+
+    if (!response.ok) {
+      return new Response(text, { status: response.status });
+    }
+
+    return new Response(text, {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    return new Response(error.message || "Server error", {
+      status: 500,
+    });
+  }
 }
