@@ -21,11 +21,7 @@ export async function POST(req) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          records: [
-            {
-              fields: body,
-            },
-          ],
+          records: [{ fields: body }],
         }),
       }
     );
