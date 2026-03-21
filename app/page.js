@@ -20,6 +20,7 @@ import {
   getQuestions,
 } from "../lib/fragility";
 import ScoreBars from "./components/ScoreBars";
+import RiskMeter from "./components/RiskMeter";
 
 const defaultInputs = {
   companyName: "",
@@ -54,8 +55,12 @@ function severityChip(severity) {
 }
 
 function riskBandChip(riskBand) {
-  if (riskBand.includes("Low")) return "bg-emerald-50 text-emerald-700 border border-emerald-200";
-  if (riskBand.includes("Moderate")) return "bg-amber-50 text-amber-700 border border-amber-200";
+  if (riskBand.includes("Low")) {
+    return "bg-emerald-50 text-emerald-700 border border-emerald-200";
+  }
+  if (riskBand.includes("Moderate")) {
+    return "bg-amber-50 text-amber-700 border border-amber-200";
+  }
   return "bg-rose-50 text-rose-700 border border-rose-200";
 }
 
@@ -283,21 +288,25 @@ export default function Page() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
-      <div className="mx-auto max-w-7xl px-4 py-6 md:px-8">
-        <section className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
-          <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
-            <div className="max-w-3xl">
-              <div className="mb-3 inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
-                Revenue Architecture
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_#ffffff_0%,_#f8fafc_35%,_#eef2f7_100%)] text-slate-900">
+      <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
+        <section className="rounded-[32px] border border-white/60 bg-white/80 p-6 shadow-[0_10px_40px_rgba(15,23,42,0.08)] backdrop-blur md:p-8">
+          <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+            <div className="max-w-4xl">
+              <div className="mb-3 flex flex-wrap gap-2">
+                <div className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm">
+                  Revenue Architecture
+                </div>
+                <div className="inline-flex rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-medium text-rose-700">
+                  Built for founder-led agencies from $10M–$50M
+                </div>
               </div>
-              <h1 className="text-3xl font-semibold tracking-tight md:text-5xl">
+
+              <h1 className="text-4xl font-semibold tracking-[-0.04em] text-slate-950 md:text-6xl">
                 Is Your Revenue System Quietly Breaking Under Growth?
               </h1>
-              <div className="mt-4 inline-flex rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-medium text-rose-700">
-                Built for founder-led agencies from $10M–$50M
-              </div>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 md:text-base">
+
+              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
                 Most agencies don’t see structural fragility until it’s already expensive.
                 Quantify unstable revenue, margin leakage, valuation pressure, and the
                 operating risks beneath growth.
@@ -307,20 +316,22 @@ export default function Page() {
             <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={handleLoadSample}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50"
               >
                 Load Sample
               </button>
+
               <button
                 onClick={handleReset}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50"
               >
                 <RefreshCcw className="h-4 w-4" />
                 Reset
               </button>
+
               <button
                 onClick={handleExportPdf}
-                className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
+                className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(15,23,42,0.15)] transition hover:-translate-y-0.5 hover:bg-slate-800"
               >
                 <Download className="h-4 w-4" />
                 Export PDF Preview
@@ -329,11 +340,13 @@ export default function Page() {
           </div>
         </section>
 
-        <div className="mt-6 grid gap-6 xl:grid-cols-[340px_minmax(0,1fr)]">
-          <aside className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="mt-8 grid gap-8 xl:grid-cols-[360px_minmax(0,1fr)]">
+          <aside className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
             <div className="mb-5">
-              <h2 className="text-2xl font-semibold tracking-tight">Assessment Inputs</h2>
-              <p className="mt-1 text-sm text-slate-600">
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
+                Assessment Inputs
+              </h2>
+              <p className="mt-1 text-sm leading-6 text-slate-600">
                 Capture the commercial signals creating structural exposure.
               </p>
             </div>
@@ -347,7 +360,7 @@ export default function Page() {
                   value={inputs.companyName}
                   onChange={(e) => updateTextField("companyName", e.target.value)}
                   placeholder="Your Agency"
-                  className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-slate-900"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-slate-900"
                 />
               </div>
 
@@ -359,7 +372,7 @@ export default function Page() {
                   value={inputs.workEmail}
                   onChange={(e) => updateTextField("workEmail", e.target.value)}
                   placeholder="name@company.com"
-                  className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-slate-900"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-slate-900"
                 />
               </div>
 
@@ -417,7 +430,7 @@ export default function Page() {
               <button
                 onClick={handleSaveLead}
                 disabled={submitting || !inputs.workEmail}
-                className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(15,23,42,0.12)] transition hover:-translate-y-0.5 hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {submitting ? (
                   <>
@@ -438,13 +451,17 @@ export default function Page() {
                 </div>
               )}
 
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div className="rounded-[24px] border border-slate-200 bg-slate-50/80 p-4">
                 <p className="text-sm font-semibold text-slate-900">
                   Self-recognition prompts
                 </p>
+
                 <div className="mt-3 space-y-3">
                   {selfRecognitionPrompts.map((prompt) => (
-                    <div key={prompt.id} className="rounded-2xl bg-white p-3 shadow-sm">
+                    <div
+                      key={prompt.id}
+                      className="rounded-2xl border border-slate-100 bg-white p-3 shadow-sm"
+                    >
                       <p className="text-sm font-medium text-slate-900">{prompt.label}</p>
                       <p className="mt-1 text-xs leading-5 text-slate-600">
                         {prompt.helper}
@@ -456,36 +473,40 @@ export default function Page() {
             </div>
           </aside>
 
-          <section className="space-y-6">
-            <div className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm md:p-6">
-              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                <div>
+          <section className="space-y-8">
+            <div className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+                <div className="max-w-3xl">
                   <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
                     Assessment for
                   </p>
-                  <h2 className="text-3xl font-semibold tracking-tight">
+                  <h2 className="mt-1 text-3xl font-semibold tracking-[-0.03em] text-slate-950 md:text-4xl">
                     {inputs.companyName || "Your Agency"}
                   </h2>
                   <p className="mt-2 text-sm text-slate-600">
                     Profile type:{" "}
                     <span className="font-semibold text-slate-900">{result.profileType}</span>
                   </p>
-                  <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-700">
+                  <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-700">
                     {result.summary}
                   </p>
                 </div>
 
-                <span
-                  className={cn(
-                    "inline-flex self-start rounded-full px-3 py-1 text-xs font-semibold",
-                    riskBandChip(result.riskBand)
-                  )}
-                >
-                  {result.riskBand}
-                </span>
+                <div className="flex w-full max-w-[280px] flex-col gap-3">
+                  <span
+                    className={cn(
+                      "inline-flex self-start rounded-full px-3 py-1 text-xs font-semibold",
+                      riskBandChip(result.riskBand)
+                    )}
+                  >
+                    {result.riskBand}
+                  </span>
+
+                  <RiskMeter score={result.overallScore} riskBand={result.riskBand} />
+                </div>
               </div>
 
-              <div className="mt-6 grid gap-4 md:grid-cols-4">
+              <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                 <MetricCard
                   icon={<BadgeDollarSign className="h-5 w-5" />}
                   title="Potentially Unstable Revenue"
@@ -518,20 +539,24 @@ export default function Page() {
                 />
               </div>
 
-              <p className="mt-4 text-sm leading-6 text-slate-700">
-                Based on your inputs, this revenue system may be compressing enterprise
-                value by{" "}
-                <span className="font-semibold">
-                  {formatCurrency(result.evCompressionLow)} to{" "}
-                  {formatCurrency(result.evCompressionHigh)}
-                </span>{" "}
-                if left structurally uncorrected.
-              </p>
+              <div className="mt-5 rounded-[24px] border border-slate-100 bg-slate-50/70 p-4">
+                <p className="text-sm leading-6 text-slate-700">
+                  Based on your inputs, this revenue system may be compressing enterprise
+                  value by{" "}
+                  <span className="font-semibold text-slate-950">
+                    {formatCurrency(result.evCompressionLow)} to{" "}
+                    {formatCurrency(result.evCompressionHigh)}
+                  </span>{" "}
+                  if left structurally uncorrected.
+                </p>
+              </div>
             </div>
 
-            <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-              <h3 className="text-2xl font-semibold tracking-tight">Driver Analysis</h3>
-              <p className="mt-1 text-sm text-slate-600">
+            <div className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+              <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
+                Driver Analysis
+              </h3>
+              <p className="mt-1 text-sm leading-6 text-slate-600">
                 These are the structural constraints limiting your ability to scale
                 predictably.
               </p>
@@ -540,10 +565,10 @@ export default function Page() {
                 {result.drivers.map((driver) => (
                   <div
                     key={driver.label}
-                    className="rounded-[24px] border border-slate-200 bg-slate-50 p-4"
+                    className="rounded-[26px] border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-5 shadow-sm"
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <p className="max-w-[160px] text-sm font-semibold leading-5 text-slate-900">
+                      <p className="max-w-[170px] text-sm font-semibold leading-5 text-slate-900">
                         {driver.label}
                       </p>
                       <span
@@ -555,12 +580,15 @@ export default function Page() {
                         {driver.severity}
                       </span>
                     </div>
-                    <p className="mt-3 text-4xl font-semibold tracking-tight">
+
+                    <p className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-slate-950">
                       {driver.value}%
                     </p>
+
                     <p className="mt-2 text-xs font-medium uppercase tracking-wide text-slate-500">
                       {driver.benchmark}
                     </p>
+
                     <p className="mt-3 text-sm leading-6 text-slate-600">
                       {driver.explanation}
                     </p>
@@ -576,85 +604,94 @@ export default function Page() {
               cn={cn}
             />
 
-            <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-              <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 className="text-2xl font-semibold tracking-tight">
-                  Structural Interpretation
-                </h3>
-                <div className="mt-4 space-y-4 text-sm leading-7 text-slate-700">
-                  <p>{result.summary}</p>
-                  <p>{result.urgency}</p>
-                  <p>
-                    Most teams attempt to fix this with more pipeline, more hiring, or more
-                    founder intervention. The issue is structural, not effort-driven.
-                  </p>
-                </div>
+            <div className="grid gap-8 xl:grid-cols-[1.2fr_0.8fr]">
+              <div className="space-y-8">
+                <div className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+                  <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
+                    Structural Interpretation
+                  </h3>
 
-                <div className="mt-5 rounded-[24px] border border-slate-200 bg-slate-50 p-4">
-                  <div className="flex items-center gap-2">
-                    <AlertTriangle className="h-4 w-4 text-slate-700" />
-                    <p className="text-sm font-semibold text-slate-900">
-                      Recommended next step
+                  <div className="mt-4 space-y-4 text-sm leading-7 text-slate-700">
+                    <p>{result.summary}</p>
+                    <p>{result.urgency}</p>
+                    <p>
+                      Most teams attempt to fix this with more pipeline, more hiring, or
+                      more founder intervention. The issue is structural, not
+                      effort-driven.
                     </p>
                   </div>
-                  <p className="mt-3 text-sm leading-6 text-slate-700">
-                    {result.recommendedNextStep}
-                  </p>
 
-                  <div className="mt-4 flex flex-wrap gap-3">
-                    <a
-                      href={bookingUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
-                    >
-                      Book Revenue Architecture Review
-                      <ArrowRight className="h-4 w-4" />
-                    </a>
-                    <button
-                      onClick={handleCopyTalkTrack}
-                      className="rounded-full border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-                    >
-                      Copy Live Demo Script
-                    </button>
+                  <div className="mt-6 rounded-[26px] border border-slate-200 bg-slate-50/80 p-5">
+                    <div className="flex items-center gap-2">
+                      <AlertTriangle className="h-4 w-4 text-slate-700" />
+                      <p className="text-sm font-semibold text-slate-900">
+                        Recommended next step
+                      </p>
+                    </div>
+
+                    <p className="mt-3 text-sm leading-6 text-slate-700">
+                      {result.recommendedNextStep}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      <a
+                        href={bookingUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(15,23,42,0.15)] transition hover:-translate-y-0.5 hover:bg-slate-800"
+                      >
+                        Book Revenue Architecture Review
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
+
+                      <button
+                        onClick={handleCopyTalkTrack}
+                        className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50"
+                      >
+                        Copy Live Demo Script
+                      </button>
+                    </div>
+
+                    <p className="mt-3 text-xs leading-5 text-slate-500">
+                      In 30 minutes, we’ll validate where this exposure is actually coming
+                      from and whether it’s worth fixing now.
+                    </p>
                   </div>
 
-                  <p className="mt-3 text-xs leading-5 text-slate-500">
-                    In 30 minutes, we’ll validate where this exposure is actually coming
-                    from and whether it’s worth fixing now.
-                  </p>
-                </div>
-
-                <div className="mt-5 rounded-[24px] border border-slate-200 bg-white p-4">
-                  <p className="text-sm font-semibold text-slate-900">
-                    What happens in the full diagnostic
-                  </p>
-                  <div className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-                    <p>1. Revenue mix, concentration, and margin review</p>
-                    <p>2. Founder and revenue leader interviews</p>
-                    <p>3. Four-pillar structural analysis</p>
-                    <p>4. Executive readout and 90-day stabilization roadmap</p>
+                  <div className="mt-6 rounded-[26px] border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-5 shadow-sm">
+                    <p className="text-sm font-semibold text-slate-900">
+                      What happens in the full diagnostic
+                    </p>
+                    <div className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                      <p>1. Revenue mix, concentration, and margin review</p>
+                      <p>2. Founder and revenue leader interviews</p>
+                      <p>3. Four-pillar structural analysis</p>
+                      <p>4. Executive readout and 90-day stabilization roadmap</p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="mt-5 rounded-[24px] border border-slate-200 bg-white p-4">
-                  <p className="text-sm font-semibold text-slate-900">
-                    Live demo talk track
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-slate-700">
-                    {result.liveDemoScript}
-                  </p>
+                  <div className="mt-6 rounded-[26px] border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-5 shadow-sm">
+                    <p className="text-sm font-semibold text-slate-900">
+                      Live demo talk track
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-slate-700">
+                      {result.liveDemoScript}
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-                  <h3 className="text-2xl font-semibold tracking-tight">Top Risks</h3>
+              <div className="space-y-8">
+                <div className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+                  <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
+                    Top Risks
+                  </h3>
+
                   <div className="mt-4 space-y-3">
                     {result.topRisks.map((risk) => (
                       <div
                         key={risk}
-                        className="rounded-[20px] border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700"
+                        className="rounded-[22px] border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-4 text-sm leading-6 text-slate-700 shadow-sm"
                       >
                         {risk}
                       </div>
@@ -662,13 +699,17 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-                  <h3 className="text-2xl font-semibold tracking-tight">Action Trigger</h3>
+                <div className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+                  <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
+                    Action Trigger
+                  </h3>
+
                   <p className="mt-3 text-sm leading-6 text-slate-700">
                     This snapshot is designed to identify whether growth is being supported
                     by durable revenue architecture — or whether fragility is accumulating
                     beneath the numbers.
                   </p>
+
                   <p className="mt-3 text-sm leading-6 text-slate-700">
                     The full diagnostic validates where that exposure is actually coming
                     from across concentration, manager accountability, coverage, and margin
@@ -679,7 +720,7 @@ export default function Page() {
             </div>
 
             <p className="pb-2 text-center text-xs text-slate-500">
-              Built as a scalable assessment and validation wedge for Revenue Architecture.
+              v2.1 – Revenue Fragility Snapshot
             </p>
           </section>
         </div>
@@ -690,19 +731,21 @@ export default function Page() {
 
 function MetricCard({ title, value, subtitle, accent, icon }) {
   const accents = {
-    rose: "border-rose-200 bg-rose-50/50",
-    amber: "border-amber-200 bg-amber-50/50",
-    yellow: "border-yellow-200 bg-yellow-50/50",
-    slate: "border-slate-200 bg-slate-50",
+    rose: "border-rose-100 bg-gradient-to-br from-rose-50 to-white",
+    amber: "border-amber-100 bg-gradient-to-br from-amber-50 to-white",
+    yellow: "border-yellow-100 bg-gradient-to-br from-yellow-50 to-white",
+    slate: "border-slate-100 bg-gradient-to-br from-slate-50 to-white",
   };
 
   return (
-    <div className={cn("rounded-[24px] border p-4", accents[accent])}>
+    <div className={cn("rounded-[26px] border p-5 shadow-sm", accents[accent])}>
       <div className="flex items-center gap-2 text-sm font-medium text-slate-700">
         {icon}
         {title}
       </div>
-      <div className="mt-4 text-4xl font-semibold tracking-tight">{value}</div>
+      <div className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-slate-950">
+        {value}
+      </div>
       <p className="mt-2 text-sm leading-6 text-slate-600">{subtitle}</p>
     </div>
   );
@@ -714,7 +757,7 @@ function NumberField({ label, value, onChange, prefix, suffix }) {
       <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">
         {label}
       </label>
-      <div className="flex items-center rounded-2xl border border-slate-300 bg-white px-3 py-3">
+      <div className="flex items-center rounded-2xl border border-slate-200 bg-white px-3 py-3 shadow-sm">
         {prefix ? <span className="mr-2 text-sm text-slate-500">{prefix}</span> : null}
         <input
           type="number"
@@ -726,6 +769,4 @@ function NumberField({ label, value, onChange, prefix, suffix }) {
       </div>
     </div>
   );
-}<p className="text-center text-xs text-slate-400 mt-6">
-  v2.1 – Revenue Fragility Snapshot
-</p>
+}
