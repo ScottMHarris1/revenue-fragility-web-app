@@ -19,9 +19,10 @@ import {
   formatCurrency,
   getQuestions,
 } from "../lib/fragility";
+import ScoreBars from "./components/ScoreBars";
 
 const defaultInputs = {
-  companyName: "Example Agency",
+  companyName: "",
   workEmail: "",
   annualRevenue: 30000000,
   top3AccountsPct: 35,
@@ -93,10 +94,16 @@ export default function Page() {
     setSaved(false);
 
     try {
+      const utmSource =
+        typeof window !== "undefined"
+          ? new URLSearchParams(window.location.search).get("utm_source") || ""
+          : "";
+
       const payload = {
         ...inputs,
         ...result,
         source: "Revenue Fragility Snapshot",
+        utmSource,
       };
 
       const res = await fetch("/api/assessment", {
@@ -146,7 +153,7 @@ export default function Page() {
     doc.setFont("helvetica", "normal");
     doc.setFontSize(11);
     y = addWrappedText(
-      `Assessment for ${inputs.companyName} | ${new Date().toLocaleDateString()}`,
+      `Assessment for ${inputs.companyName || "Your Agency"} | ${new Date().toLocaleDateString()}`,
       margin,
       y,
       pageWidth - margin * 2
@@ -223,13 +230,30 @@ export default function Page() {
 
     y += 12;
     doc.setFont("helvetica", "bold");
+    doc.text("What Happens in the Full Diagnostic", margin, y);
+    y += 18;
+    doc.setFont("helvetica", "normal");
+    y = addWrappedText(
+      `1. Revenue mix, concentration, and margin review
+2. Founder and revenue leader interviews
+3. Four-pillar structural analysis
+4. Executive readout and 90-day stabilization roadmap`,
+      margin,
+      y,
+      pageWidth - margin * 2
+    );
+
+    y += 12;
+    doc.setFont("helvetica", "bold");
     doc.text("Live Demo Talk Track", margin, y);
     y += 18;
     doc.setFont("helvetica", "normal");
     addWrappedText(result.liveDemoScript, margin, y, pageWidth - margin * 2);
 
     doc.save(
-      `${inputs.companyName.toLowerCase().replace(/\s+/g, "-")}-revenue-fragility-snapshot.pdf`
+      `${(inputs.companyName || "your-agency")
+        .toLowerCase()
+        .replace(/\s+/g, "-")}-revenue-fragility-snapshot.pdf`
     );
   }
 
@@ -239,6 +263,22 @@ export default function Page() {
 
   function handleReset() {
     setInputs(defaultInputs);
+    setSaved(false);
+  }
+
+  function handleLoadSample() {
+    setInputs({
+      companyName: "Sample Agency",
+      workEmail: "",
+      annualRevenue: 25000000,
+      top3AccountsPct: 41,
+      avgGrossMarginPct: 54,
+      targetMarginPct: 65,
+      founderInfluencedRevenuePct: 48,
+      forecastAccuracyPct: 72,
+      sellersCount: 10,
+      managersCount: 2,
+    });
     setSaved(false);
   }
 
@@ -254,14 +294,23 @@ export default function Page() {
               <h1 className="text-3xl font-semibold tracking-tight md:text-5xl">
                 Is Your Revenue System Quietly Breaking Under Growth?
               </h1>
+              <div className="mt-4 inline-flex rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-medium text-rose-700">
+                Built for founder-led agencies from $10M–$50M
+              </div>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 md:text-base">
-                Most agencies do not see structural fragility until it is already expensive.
+                Most agencies don’t see structural fragility until it’s already expensive.
                 Quantify unstable revenue, margin leakage, valuation pressure, and the
                 operating risks beneath growth.
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={handleLoadSample}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+              >
+                Load Sample
+              </button>
               <button
                 onClick={handleReset}
                 className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
@@ -297,6 +346,7 @@ export default function Page() {
                 <input
                   value={inputs.companyName}
                   onChange={(e) => updateTextField("companyName", e.target.value)}
+                  placeholder="Your Agency"
                   className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-slate-900"
                 />
               </div>
@@ -321,7 +371,7 @@ export default function Page() {
                   onChange={(value) => updateNumberField("annualRevenue", value)}
                 />
                 <NumberField
-                  label="Top 3 accounts"
+                  label="Revenue in top 3 clients"
                   suffix="%"
                   value={inputs.top3AccountsPct}
                   onChange={(value) => updateNumberField("top3AccountsPct", value)}
@@ -339,7 +389,7 @@ export default function Page() {
                   onChange={(value) => updateNumberField("targetMarginPct", value)}
                 />
                 <NumberField
-                  label="Founder influenced revenue"
+                  label="Revenue requiring founder involvement"
                   suffix="%"
                   value={inputs.founderInfluencedRevenuePct}
                   onChange={(value) =>
@@ -347,7 +397,7 @@ export default function Page() {
                   }
                 />
                 <NumberField
-                  label="Forecast accuracy"
+                  label="Current forecast accuracy"
                   suffix="%"
                   value={inputs.forecastAccuracyPct}
                   onChange={(value) => updateNumberField("forecastAccuracyPct", value)}
@@ -381,6 +431,13 @@ export default function Page() {
                 )}
               </button>
 
+              {saved && (
+                <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
+                  Assessment saved. Your snapshot is ready, and you can now book a Revenue
+                  Architecture review.
+                </div>
+              )}
+
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                 <p className="text-sm font-semibold text-slate-900">
                   Self-recognition prompts
@@ -407,11 +464,14 @@ export default function Page() {
                     Assessment for
                   </p>
                   <h2 className="text-3xl font-semibold tracking-tight">
-                    {inputs.companyName || "Agency"}
+                    {inputs.companyName || "Your Agency"}
                   </h2>
                   <p className="mt-2 text-sm text-slate-600">
                     Profile type:{" "}
                     <span className="font-semibold text-slate-900">{result.profileType}</span>
+                  </p>
+                  <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-700">
+                    {result.summary}
                   </p>
                 </div>
 
@@ -430,16 +490,14 @@ export default function Page() {
                   icon={<BadgeDollarSign className="h-5 w-5" />}
                   title="Potentially Unstable Revenue"
                   value={formatCurrency(result.revenueAtRisk)}
-                  subtitle={`${Math.round(
-                    (result.revenueAtRisk / Math.max(inputs.annualRevenue, 1)) * 100
-                  )}% of annual revenue exposed`}
+                  subtitle="Revenue exposed to concentration, forecast volatility, and founder dependency"
                   accent="rose"
                 />
                 <MetricCard
                   icon={<LineChart className="h-5 w-5" />}
                   title="Margin Leakage"
                   value={formatCurrency(result.marginLeakage)}
-                  subtitle="Annualized gap vs target operating profile"
+                  subtitle="Annualized gap versus target operating profile"
                   accent="amber"
                 />
                 <MetricCard
@@ -455,79 +513,68 @@ export default function Page() {
                   value={`${formatCurrency(result.evCompressionLow)}–${formatCurrency(
                     result.evCompressionHigh
                   )}`}
-                  subtitle="Estimated compressed enterprise value"
+                  subtitle="Estimated compressed enterprise value if uncorrected"
                   accent="slate"
                 />
               </div>
+
+              <p className="mt-4 text-sm leading-6 text-slate-700">
+                Based on your inputs, this revenue system may be compressing enterprise
+                value by{" "}
+                <span className="font-semibold">
+                  {formatCurrency(result.evCompressionLow)} to{" "}
+                  {formatCurrency(result.evCompressionHigh)}
+                </span>{" "}
+                if left structurally uncorrected.
+              </p>
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-[1.35fr_0.9fr]">
-              <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 className="text-2xl font-semibold tracking-tight">Driver Analysis</h3>
-                <p className="mt-1 text-sm text-slate-600">
-                  These are the structural constraints limiting your ability to scale
-                  predictably.
-                </p>
+            <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 className="text-2xl font-semibold tracking-tight">Driver Analysis</h3>
+              <p className="mt-1 text-sm text-slate-600">
+                These are the structural constraints limiting your ability to scale
+                predictably.
+              </p>
 
-                <div className="mt-5 grid gap-4 md:grid-cols-3">
-                  {result.drivers.map((driver) => (
-                    <div
-                      key={driver.label}
-                      className="rounded-[24px] border border-slate-200 bg-slate-50 p-4"
-                    >
-                      <div className="flex items-start justify-between gap-2">
-                        <p className="max-w-[160px] text-sm font-semibold leading-5 text-slate-900">
-                          {driver.label}
-                        </p>
-                        <span
-                          className={cn(
-                            "rounded-full px-2.5 py-1 text-[11px] font-semibold",
-                            severityChip(driver.severity)
-                          )}
-                        >
-                          {driver.severity}
-                        </span>
-                      </div>
-                      <p className="mt-3 text-4xl font-semibold tracking-tight">
-                        {driver.value}%
+              <div className="mt-5 grid gap-4 md:grid-cols-3">
+                {result.drivers.map((driver) => (
+                  <div
+                    key={driver.label}
+                    className="rounded-[24px] border border-slate-200 bg-slate-50 p-4"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="max-w-[160px] text-sm font-semibold leading-5 text-slate-900">
+                        {driver.label}
                       </p>
-                      <p className="mt-2 text-xs font-medium uppercase tracking-wide text-slate-500">
-                        {driver.benchmark}
-                      </p>
-                      <p className="mt-3 text-sm leading-6 text-slate-600">
-                        {driver.explanation}
-                      </p>
+                      <span
+                        className={cn(
+                          "rounded-full px-2.5 py-1 text-[11px] font-semibold",
+                          severityChip(driver.severity)
+                        )}
+                      >
+                        {driver.severity}
+                      </span>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 className="text-2xl font-semibold tracking-tight">
-                  Architecture Breakdown
-                </h3>
-                <p className="mt-1 text-sm text-slate-600">
-                  Four-pillar view of the revenue system beneath growth.
-                </p>
-
-                <div className="mt-4 space-y-3">
-                  {result.pillarScores.map((pillar) => (
-                    <div key={pillar.name}>
-                      <div className="mb-1 flex items-center justify-between text-sm">
-                        <span className="font-medium text-slate-700">{pillar.name}</span>
-                        <span className="font-semibold text-slate-900">{pillar.score}</span>
-                      </div>
-                      <div className="h-2 overflow-hidden rounded-full bg-slate-100">
-                        <div
-                          className={cn("h-full rounded-full", scorePillColor(pillar.score))}
-                          style={{ width: `${pillar.score}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                    <p className="mt-3 text-4xl font-semibold tracking-tight">
+                      {driver.value}%
+                    </p>
+                    <p className="mt-2 text-xs font-medium uppercase tracking-wide text-slate-500">
+                      {driver.benchmark}
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                      {driver.explanation}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
+
+            <ScoreBars
+              pillarScores={result.pillarScores}
+              benchmarkBars={benchmarkBars}
+              scorePillColor={scorePillColor}
+              cn={cn}
+            />
 
             <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
               <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
@@ -561,7 +608,7 @@ export default function Page() {
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
                     >
-                      Get My Full Revenue Diagnostic
+                      Book Revenue Architecture Review
                       <ArrowRight className="h-4 w-4" />
                     </a>
                     <button
@@ -571,10 +618,29 @@ export default function Page() {
                       Copy Live Demo Script
                     </button>
                   </div>
+
+                  <p className="mt-3 text-xs leading-5 text-slate-500">
+                    In 30 minutes, we’ll validate where this exposure is actually coming
+                    from and whether it’s worth fixing now.
+                  </p>
                 </div>
 
                 <div className="mt-5 rounded-[24px] border border-slate-200 bg-white p-4">
-                  <p className="text-sm font-semibold text-slate-900">Live demo talk track</p>
+                  <p className="text-sm font-semibold text-slate-900">
+                    What happens in the full diagnostic
+                  </p>
+                  <div className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                    <p>1. Revenue mix, concentration, and margin review</p>
+                    <p>2. Founder and revenue leader interviews</p>
+                    <p>3. Four-pillar structural analysis</p>
+                    <p>4. Executive readout and 90-day stabilization roadmap</p>
+                  </div>
+                </div>
+
+                <div className="mt-5 rounded-[24px] border border-slate-200 bg-white p-4">
+                  <p className="text-sm font-semibold text-slate-900">
+                    Live demo talk track
+                  </p>
                   <p className="mt-3 text-sm leading-7 text-slate-700">
                     {result.liveDemoScript}
                   </p>
@@ -582,33 +648,6 @@ export default function Page() {
               </div>
 
               <div className="space-y-6">
-                <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-                  <h3 className="text-2xl font-semibold tracking-tight">Benchmark View</h3>
-                  <p className="mt-1 text-sm text-slate-600">
-                    Position against a stronger operating profile.
-                  </p>
-
-                  <div className="mt-4 space-y-4">
-                    {benchmarkBars.map((item) => (
-                      <div key={item.label}>
-                        <div className="mb-1 flex items-center justify-between text-sm">
-                          <span className="font-medium text-slate-700">{item.label}</span>
-                          <span className="text-slate-500">Target: {item.target}%</span>
-                        </div>
-                        <div className="h-2 rounded-full bg-slate-100">
-                          <div
-                            className="h-full rounded-full bg-slate-900"
-                            style={{ width: `${item.current}%` }}
-                          />
-                        </div>
-                        <div className="mt-1 text-xs text-slate-500">
-                          Current: {item.current}%
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
                 <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
                   <h3 className="text-2xl font-semibold tracking-tight">Top Risks</h3>
                   <div className="mt-4 space-y-3">
@@ -621,6 +660,20 @@ export default function Page() {
                       </div>
                     ))}
                   </div>
+                </div>
+
+                <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+                  <h3 className="text-2xl font-semibold tracking-tight">Action Trigger</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-700">
+                    This snapshot is designed to identify whether growth is being supported
+                    by durable revenue architecture — or whether fragility is accumulating
+                    beneath the numbers.
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-slate-700">
+                    The full diagnostic validates where that exposure is actually coming
+                    from across concentration, manager accountability, coverage, and margin
+                    construction.
+                  </p>
                 </div>
               </div>
             </div>
