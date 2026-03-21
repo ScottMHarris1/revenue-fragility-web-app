@@ -726,4 +726,6 @@ function NumberField({ label, value, onChange, prefix, suffix }) {
       </div>
     </div>
   );
-}
+}<p className="text-center text-xs text-slate-400 mt-6">
+  v2.1 – Revenue Fragility Snapshot
+</p>
