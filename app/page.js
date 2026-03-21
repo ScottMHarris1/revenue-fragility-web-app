@@ -6,17 +6,22 @@ import {
   AlertTriangle,
   ArrowRight,
   BadgeDollarSign,
+  BarChart3,
   Building2,
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
   Download,
   Gauge,
+  Landmark,
+  LayoutDashboard,
   LineChart,
   Loader2,
   RefreshCcw,
   ShieldAlert,
   Sparkles,
+  TrendingDown,
+  TrendingUp,
 } from "lucide-react";
 import {
   calculateAssessment,
@@ -326,17 +331,15 @@ export default function Page() {
     inputs.annualRevenue > 0;
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,255,255,1)_0%,_rgba(248,250,252,1)_28%,_rgba(238,242,247,1)_100%)] text-slate-900">
-      <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-12">
-        <section className="relative overflow-hidden rounded-[40px] border border-white/70 bg-white/85 p-6 shadow-[0_24px_70px_rgba(15,23,42,0.10)] backdrop-blur md:p-10">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.98),_rgba(255,255,255,0))]" />
-          <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-rose-100/40 blur-3xl" />
-          <div className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-slate-200/35 blur-3xl" />
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.12),rgba(255,255,255,0))]" />
+    <main className="min-h-screen bg-[linear-gradient(180deg,#f8fafc_0%,#eef2f7_100%)] text-slate-900">
+      <div className="mx-auto max-w-[1500px] px-4 py-6 md:px-8">
+        <section className="relative mb-6 overflow-hidden rounded-[32px] border border-slate-200/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,250,252,0.96)_100%)] px-6 py-7 shadow-[0_18px_50px_rgba(15,23,42,0.08)] md:px-8 md:py-8">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,1),_rgba(255,255,255,0))]" />
+          <div className="pointer-events-none absolute -right-14 -top-14 h-40 w-40 rounded-full bg-rose-100/40 blur-3xl" />
 
-          <div className="relative flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+          <div className="relative flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
             <div className="max-w-4xl">
-              <div className="mb-4 flex flex-wrap items-center gap-3">
+              <div className="mb-3 flex flex-wrap items-center gap-3">
                 <div className="inline-flex h-11 items-center rounded-2xl border border-slate-200 bg-white px-4 shadow-sm">
                   <span className="text-sm font-semibold tracking-[-0.03em] text-slate-900">
                     Revenue Architecture™
@@ -348,27 +351,27 @@ export default function Page() {
                 </div>
               </div>
 
-              <h1 className="text-4xl font-semibold leading-[0.9] tracking-[-0.065em] text-slate-950 md:text-6xl">
+              <h1 className="max-w-5xl text-[clamp(3rem,6vw,5.25rem)] font-semibold leading-[0.92] tracking-[-0.08em] text-slate-950">
                 Is Your Revenue System Quietly Breaking Under Growth?
               </h1>
 
-              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
+              <p className="mt-4 max-w-3xl text-[clamp(1.05rem,1.4vw,1.45rem)] leading-8 text-slate-600">
                 A premium executive snapshot of unstable revenue, margin leakage,
                 valuation pressure, and the structural risks beneath growth.
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex shrink-0 flex-wrap items-center gap-3 xl:justify-end">
               <button
                 onClick={handleLoadSample}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md"
               >
                 View Example Agency
               </button>
 
               <button
                 onClick={handleReset}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md"
               >
                 <RefreshCcw className="h-4 w-4" />
                 Reset
@@ -376,7 +379,7 @@ export default function Page() {
 
               <button
                 onClick={handleExportPdf}
-                className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(15,23,42,0.16)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_14px_30px_rgba(15,23,42,0.2)]"
+                className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_12px_26px_rgba(15,23,42,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_16px_34px_rgba(15,23,42,0.22)]"
               >
                 <Download className="h-4 w-4" />
                 Export PDF Preview
@@ -385,330 +388,335 @@ export default function Page() {
           </div>
         </section>
 
-        <div className="mt-8 grid gap-8 xl:grid-cols-[430px_1px_minmax(0,1fr)]">
-          <aside className="rounded-[34px] border border-white/75 bg-white/88 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)] backdrop-blur">
-            <div className="mb-6">
-              <div className="flex items-center gap-3">
-                <StepPill number={1} active={step === 1} complete={step > 1} label="Company" />
-                <div className="h-px flex-1 bg-slate-200" />
-                <StepPill number={2} active={step === 2} complete={false} label="Assessment" />
-              </div>
-            </div>
+        <div className="grid gap-6 xl:grid-cols-[390px_minmax(0,1fr)]">
+          <aside className="relative overflow-hidden rounded-[30px] border border-slate-200/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,250,252,0.98)_100%)] p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)]">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,1),_rgba(255,255,255,0))]" />
 
-            {step === 1 ? (
-              <div className="space-y-5">
+            <div className="relative">
+              <div className="mb-5 flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-md">
+                  <LayoutDashboard className="h-5 w-5" />
+                </div>
                 <div>
-                  <h2 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
-                    Step 1 · Company Profile
-                  </h2>
-                  <p className="mt-1 text-sm leading-6 text-slate-600">
-                    Start with the executive context used to anchor the snapshot.
+                  <p className="text-sm font-semibold tracking-[-0.02em] text-slate-950">
+                    Revenue Fragility Snapshot
+                  </p>
+                  <p className="text-xs text-slate-500">
+                    Executive structural assessment
                   </p>
                 </div>
-
-                <div>
-                  <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-                    Company name
-                  </label>
-                  <input
-                    value={inputs.companyName}
-                    onChange={(e) => updateTextField("companyName", e.target.value)}
-                    placeholder="Your Agency"
-                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none shadow-sm transition duration-200 hover:border-slate-300 hover:shadow-md focus:border-slate-900 focus:shadow-md"
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-                    Work email
-                  </label>
-                  <input
-                    value={inputs.workEmail}
-                    onChange={(e) => updateTextField("workEmail", e.target.value)}
-                    placeholder="name@company.com"
-                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none shadow-sm transition duration-200 hover:border-slate-300 hover:shadow-md focus:border-slate-900 focus:shadow-md"
-                  />
-                </div>
-
-                <NumberField
-                  label="Annual revenue"
-                  prefix="$"
-                  value={inputs.annualRevenue}
-                  onChange={(value) => updateNumberField("annualRevenue", value)}
-                />
-
-                <div className="rounded-[24px] border border-slate-200 bg-slate-50/80 p-4">
-                  <div className="flex items-start gap-3">
-                    <ShieldAlert className="mt-0.5 h-4 w-4 text-slate-500" />
-                    <div>
-                      <p className="text-sm font-semibold text-slate-900">
-                        Built for executive conversations
-                      </p>
-                      <p className="mt-1 text-sm leading-6 text-slate-600">
-                        This intake is designed to surface structural risk quickly, then
-                        move into a full Revenue Architecture review if the modeled
-                        exposure is real.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <button
-                  onClick={handleNextStep}
-                  disabled={!canContinueStep1}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(15,23,42,0.16)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_14px_30px_rgba(15,23,42,0.2)] disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  Continue to Assessment
-                  <ChevronRight className="h-4 w-4" />
-                </button>
               </div>
-            ) : (
-              <div className="space-y-5">
-                <div className="flex items-start justify-between gap-3">
+
+              <div className="mb-6 flex items-center gap-3">
+                <StepPill number={1} active={step === 1} complete={step > 1} label="Company" />
+                <div className="h-px flex-1 bg-slate-200" />
+                <StepPill number={2} active={step === 2} complete={false} label="Signals" />
+              </div>
+
+              {step === 1 ? (
+                <div className="space-y-5">
                   <div>
-                    <h2 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
-                      Step 2 · Structural Inputs
+                    <h2 className="text-[30px] font-semibold tracking-[-0.05em] text-slate-950">
+                      Start the assessment
                     </h2>
-                    <p className="mt-1 text-sm leading-6 text-slate-600">
-                      Capture the commercial signals driving structural exposure.
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      Enter the core company context to anchor the dashboard.
                     </p>
                   </div>
 
+                  <div>
+                    <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                      Company name
+                    </label>
+                    <input
+                      value={inputs.companyName}
+                      onChange={(e) => updateTextField("companyName", e.target.value)}
+                      placeholder="Your Agency"
+                      className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none shadow-sm transition duration-200 hover:border-slate-300 hover:shadow-md focus:border-slate-900 focus:shadow-md"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                      Work email
+                    </label>
+                    <input
+                      value={inputs.workEmail}
+                      onChange={(e) => updateTextField("workEmail", e.target.value)}
+                      placeholder="name@company.com"
+                      className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none shadow-sm transition duration-200 hover:border-slate-300 hover:shadow-md focus:border-slate-900 focus:shadow-md"
+                    />
+                  </div>
+
+                  <NumberField
+                    label="Annual revenue"
+                    prefix="$"
+                    value={inputs.annualRevenue}
+                    onChange={(value) => updateNumberField("annualRevenue", value)}
+                  />
+
+                  <div className="rounded-[22px] border border-slate-200 bg-white/80 p-4 shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <ShieldAlert className="mt-0.5 h-4 w-4 text-slate-500" />
+                      <div>
+                        <p className="text-sm font-semibold text-slate-900">
+                          Built for premium executive conversations
+                        </p>
+                        <p className="mt-1 text-sm leading-6 text-slate-600">
+                          This tool identifies structural exposure quickly, then moves into
+                          a full Revenue Architecture review if the pattern is real.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                   <button
-                    onClick={handlePrevStep}
-                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md"
+                    onClick={handleNextStep}
+                    disabled={!canContinueStep1}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-[0_12px_26px_rgba(15,23,42,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_16px_34px_rgba(15,23,42,0.22)] disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    <ChevronLeft className="h-4 w-4" />
-                    Back
+                    Continue to Assessment
+                    <ChevronRight className="h-4 w-4" />
                   </button>
                 </div>
+              ) : (
+                <div className="space-y-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <h2 className="text-[30px] font-semibold tracking-[-0.05em] text-slate-950">
+                        Structural inputs
+                      </h2>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                        Capture the commercial signals driving structural fragility.
+                      </p>
+                    </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <NumberField
-                    label="Revenue in top 3 clients"
-                    suffix="%"
-                    value={inputs.top3AccountsPct}
-                    onChange={(value) => updateNumberField("top3AccountsPct", value)}
-                  />
-                  <NumberField
-                    label="Avg gross margin"
-                    suffix="%"
-                    value={inputs.avgGrossMarginPct}
-                    onChange={(value) => updateNumberField("avgGrossMarginPct", value)}
-                  />
-                  <NumberField
-                    label="Target margin"
-                    suffix="%"
-                    value={inputs.targetMarginPct}
-                    onChange={(value) => updateNumberField("targetMarginPct", value)}
-                  />
-                  <NumberField
-                    label="Revenue requiring founder involvement"
-                    suffix="%"
-                    value={inputs.founderInfluencedRevenuePct}
-                    onChange={(value) =>
-                      updateNumberField("founderInfluencedRevenuePct", value)
-                    }
-                  />
-                  <NumberField
-                    label="Current forecast accuracy"
-                    suffix="%"
-                    value={inputs.forecastAccuracyPct}
-                    onChange={(value) => updateNumberField("forecastAccuracyPct", value)}
-                  />
-                  <NumberField
-                    label="# of sellers"
-                    value={inputs.sellersCount}
-                    onChange={(value) => updateNumberField("sellersCount", value)}
-                  />
-                  <NumberField
-                    label="# of managers"
-                    value={inputs.managersCount}
-                    onChange={(value) => updateNumberField("managersCount", value)}
-                  />
-                </div>
-
-                <button
-                  onClick={handleSaveLead}
-                  disabled={submitting || !inputs.workEmail}
-                  className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(15,23,42,0.16)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_14px_30px_rgba(15,23,42,0.2)] disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {submitting ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                      Saving Assessment
-                    </>
-                  ) : saved ? (
-                    <>
-                      <CheckCircle2 className="h-4 w-4" />
-                      Assessment Saved
-                    </>
-                  ) : (
-                    "Save Snapshot + Reveal Full Assessment"
-                  )}
-                </button>
-
-                {saved && (
-                  <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
-                    Assessment saved. Your snapshot is ready, and you can now book a Revenue
-                    Architecture review.
+                    <button
+                      onClick={handlePrevStep}
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                      Back
+                    </button>
                   </div>
-                )}
 
-                <div className="rounded-[24px] border border-slate-200 bg-slate-50/80 p-4">
-                  <p className="text-sm font-semibold text-slate-900">
-                    Self-recognition prompts
-                  </p>
+                  <div className="grid grid-cols-2 items-start gap-3">
+                    <NumberField
+                      label="Revenue in top 3 clients"
+                      suffix="%"
+                      value={inputs.top3AccountsPct}
+                      onChange={(value) => updateNumberField("top3AccountsPct", value)}
+                    />
+                    <NumberField
+                      label="Avg gross margin"
+                      suffix="%"
+                      value={inputs.avgGrossMarginPct}
+                      onChange={(value) => updateNumberField("avgGrossMarginPct", value)}
+                    />
+                    <NumberField
+                      label="Target margin"
+                      suffix="%"
+                      value={inputs.targetMarginPct}
+                      onChange={(value) => updateNumberField("targetMarginPct", value)}
+                    />
+                    <NumberField
+                      label="Revenue requiring founder involvement"
+                      suffix="%"
+                      value={inputs.founderInfluencedRevenuePct}
+                      onChange={(value) =>
+                        updateNumberField("founderInfluencedRevenuePct", value)
+                      }
+                    />
+                    <NumberField
+                      label="Current forecast accuracy"
+                      suffix="%"
+                      value={inputs.forecastAccuracyPct}
+                      onChange={(value) => updateNumberField("forecastAccuracyPct", value)}
+                    />
+                    <NumberField
+                      label="# of sellers"
+                      value={inputs.sellersCount}
+                      onChange={(value) => updateNumberField("sellersCount", value)}
+                    />
+                    <NumberField
+                      label="# of managers"
+                      value={inputs.managersCount}
+                      onChange={(value) => updateNumberField("managersCount", value)}
+                    />
+                  </div>
 
-                  <div className="mt-3 space-y-3">
-                    {selfRecognitionPrompts.map((prompt) => (
+                  <button
+                    onClick={handleSaveLead}
+                    disabled={submitting || !inputs.workEmail}
+                    className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-[0_12px_26px_rgba(15,23,42,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_16px_34px_rgba(15,23,42,0.22)] disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {submitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Saving Assessment
+                      </>
+                    ) : saved ? (
+                      <>
+                        <CheckCircle2 className="h-4 w-4" />
+                        Assessment Saved
+                      </>
+                    ) : (
+                      "Save Snapshot + Reveal Full Assessment"
+                    )}
+                  </button>
+
+                  {saved && (
+                    <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
+                      Assessment saved. Your snapshot is ready, and you can now book a Revenue
+                      Architecture review.
+                    </div>
+                  )}
+
+                  <div className="rounded-[22px] border border-slate-200 bg-white/80 p-4 shadow-sm">
+                    <p className="text-sm font-semibold text-slate-900">
+                      Self-recognition prompts
+                    </p>
+
+                    <div className="mt-3 space-y-3">
+                      {selfRecognitionPrompts.map((prompt) => (
+                        <div
+                          key={prompt.id}
+                          className="rounded-2xl border border-slate-100 bg-slate-50/70 p-3"
+                        >
+                          <p className="text-sm font-medium text-slate-900">{prompt.label}</p>
+                          <p className="mt-1 text-xs leading-5 text-slate-600">
+                            {prompt.helper}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </aside>
+
+          <section className="space-y-6">
+            <div className={revealClass(resultsVisible, "delay-[40ms]")}>
+              <div className="grid gap-4 lg:grid-cols-[1.4fr_0.75fr]">
+                <DashboardHeroCard
+                  companyName={inputs.companyName || "Your Agency"}
+                  profileType={result.profileType}
+                  summary={result.summary}
+                  riskBand={result.riskBand}
+                />
+                <div className="flex w-full max-w-[320px] flex-col gap-3 lg:ml-auto">
+                  <RiskMeter score={result.overallScore} riskBand={result.riskBand} />
+                </div>
+              </div>
+            </div>
+
+            <div className={revealClass(resultsVisible, "delay-[100ms]")}>
+              <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-4">
+                <MetricCard
+                  icon={<BadgeDollarSign className="h-5 w-5" />}
+                  title="Potentially Unstable Revenue"
+                  value={formatCurrency(result.revenueAtRisk)}
+                  subtitle="Revenue exposed to concentration, forecast volatility, and founder dependency"
+                  accent="rose"
+                />
+                <MetricCard
+                  icon={<LineChart className="h-5 w-5" />}
+                  title="Margin Leakage"
+                  value={formatCurrency(result.marginLeakage)}
+                  subtitle="Annualized gap versus target operating profile"
+                  accent="amber"
+                />
+                <MetricCard
+                  icon={<Gauge className="h-5 w-5" />}
+                  title="Predictability Score"
+                  value={`${result.predictabilityScore}/100`}
+                  subtitle="System-level ability to forecast and scale reliably"
+                  accent="yellow"
+                />
+                <MetricCard
+                  icon={<Landmark className="h-5 w-5" />}
+                  title="Enterprise Value Pressure"
+                  value={`${formatCurrency(result.evCompressionLow)}–${formatCurrency(
+                    result.evCompressionHigh
+                  )}`}
+                  subtitle="Estimated compressed enterprise value if uncorrected"
+                  accent="slate"
+                />
+              </div>
+            </div>
+
+            <div className={revealClass(resultsVisible, "delay-[150ms]")}>
+              <TopRibbon
+                evLow={result.evCompressionLow}
+                evHigh={result.evCompressionHigh}
+                profileType={result.profileType}
+                forecastAccuracy={inputs.forecastAccuracyPct}
+              />
+            </div>
+
+            <div className={revealClass(resultsVisible, "delay-[220ms]")}>
+              <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+                <div className="rounded-[30px] border border-slate-200/70 bg-white p-6 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
+                  <div className="flex items-center gap-3">
+                    <div className="rounded-2xl bg-slate-950 p-2 text-white shadow-md">
+                      <BarChart3 className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-semibold tracking-[-0.04em] text-slate-950">
+                        Driver Analysis
+                      </h3>
+                      <p className="mt-1 text-sm leading-6 text-slate-600">
+                        The structural constraints limiting your ability to scale predictably.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 grid gap-4 md:grid-cols-3">
+                    {result.drivers.map((driver) => (
                       <div
-                        key={prompt.id}
-                        className="rounded-2xl border border-slate-100 bg-white p-3 shadow-sm"
+                        key={driver.label}
+                        className="rounded-[24px] border border-slate-100 bg-[linear-gradient(180deg,rgba(248,250,252,0.9)_0%,rgba(255,255,255,1)_100%)] p-5 shadow-sm"
                       >
-                        <p className="text-sm font-medium text-slate-900">{prompt.label}</p>
-                        <p className="mt-1 text-xs leading-5 text-slate-600">
-                          {prompt.helper}
+                        <div className="flex items-start justify-between gap-2">
+                          <p className="max-w-[180px] text-sm font-semibold leading-5 text-slate-900">
+                            {driver.label}
+                          </p>
+                          <span
+                            className={cn(
+                              "rounded-full px-2.5 py-1 text-[11px] font-semibold",
+                              severityChip(driver.severity)
+                            )}
+                          >
+                            {driver.severity}
+                          </span>
+                        </div>
+
+                        <p className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-slate-950">
+                          {driver.value}%
+                        </p>
+
+                        <p className="mt-2 text-xs font-medium uppercase tracking-wide text-slate-500">
+                          {driver.benchmark}
+                        </p>
+
+                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                          {driver.explanation}
                         </p>
                       </div>
                     ))}
                   </div>
                 </div>
-              </div>
-            )}
-          </aside>
 
-          <div className="hidden rounded-full bg-gradient-to-b from-transparent via-slate-200/70 to-transparent xl:block" />
-
-          <section className="space-y-8">
-            <div className={revealClass(resultsVisible, "delay-[50ms]")}>
-              <div className="rounded-[34px] border border-white/75 bg-white/88 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)] backdrop-blur">
-                <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-                  <div className="max-w-3xl">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                      Assessment for
-                    </p>
-                    <h2 className="mt-1 text-3xl font-semibold tracking-[-0.03em] text-slate-950 md:text-4xl">
-                      {inputs.companyName || "Your Agency"}
-                    </h2>
-                    <p className="mt-2 text-sm text-slate-600">
-                      Profile type:{" "}
-                      <span className="font-semibold text-slate-900">{result.profileType}</span>
-                    </p>
-                    <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-700">
-                      {result.summary}
-                    </p>
-                  </div>
-
-                  <div className="flex w-full max-w-[280px] flex-col gap-3">
-                    <span
-                      className={cn(
-                        "inline-flex self-start rounded-full px-3 py-1 text-xs font-semibold",
-                        riskBandChip(result.riskBand)
-                      )}
-                    >
-                      {result.riskBand}
-                    </span>
-
-                    <RiskMeter score={result.overallScore} riskBand={result.riskBand} />
-                  </div>
-                </div>
-
-                <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                  <MetricCard
-                    icon={<BadgeDollarSign className="h-5 w-5" />}
-                    title="Potentially Unstable Revenue"
-                    value={formatCurrency(result.revenueAtRisk)}
-                    subtitle="Revenue exposed to concentration, forecast volatility, and founder dependency"
-                    accent="rose"
-                  />
-                  <MetricCard
-                    icon={<LineChart className="h-5 w-5" />}
-                    title="Margin Leakage"
-                    value={formatCurrency(result.marginLeakage)}
-                    subtitle="Annualized gap versus target operating profile"
-                    accent="amber"
-                  />
-                  <MetricCard
-                    icon={<Gauge className="h-5 w-5" />}
-                    title="Predictability Score"
-                    value={`${result.predictabilityScore}/100`}
-                    subtitle="System-level ability to forecast and scale reliably"
-                    accent="yellow"
-                  />
-                  <MetricCard
-                    icon={<Building2 className="h-5 w-5" />}
-                    title="Enterprise Value Pressure"
-                    value={`${formatCurrency(result.evCompressionLow)}–${formatCurrency(
-                      result.evCompressionHigh
-                    )}`}
-                    subtitle="Estimated compressed enterprise value if uncorrected"
-                    accent="slate"
-                  />
-                </div>
-
-                <div className="mt-5 rounded-[24px] border border-slate-100 bg-slate-50/70 p-4">
-                  <p className="text-sm leading-6 text-slate-700">
-                    Based on your inputs, this revenue system may be compressing enterprise
-                    value by{" "}
-                    <span className="font-semibold text-slate-950">
-                      {formatCurrency(result.evCompressionLow)} to{" "}
-                      {formatCurrency(result.evCompressionHigh)}
-                    </span>{" "}
-                    if left structurally uncorrected.
-                  </p>
-                </div>
+                <SignalsPanel
+                  topRisks={result.topRisks}
+                  revenueAtRisk={result.revenueAtRisk}
+                  marginLeakage={result.marginLeakage}
+                />
               </div>
             </div>
 
-            <div className={revealClass(resultsVisible, "delay-[120ms]")}>
-              <div className="rounded-[34px] border border-white/75 bg-white/88 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)] backdrop-blur">
-                <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
-                  Driver Analysis
-                </h3>
-                <p className="mt-1 text-sm leading-6 text-slate-600">
-                  These are the structural constraints limiting your ability to scale
-                  predictably.
-                </p>
-
-                <div className="mt-5 grid gap-4 md:grid-cols-3">
-                  {result.drivers.map((driver) => (
-                    <div
-                      key={driver.label}
-                      className="rounded-[26px] border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-5 shadow-sm"
-                    >
-                      <div className="flex items-start justify-between gap-2">
-                        <p className="max-w-[170px] text-sm font-semibold leading-5 text-slate-900">
-                          {driver.label}
-                        </p>
-                        <span
-                          className={cn(
-                            "rounded-full px-2.5 py-1 text-[11px] font-semibold",
-                            severityChip(driver.severity)
-                          )}
-                        >
-                          {driver.severity}
-                        </span>
-                      </div>
-
-                      <p className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-slate-950">
-                        {driver.value}%
-                      </p>
-
-                      <p className="mt-2 text-xs font-medium uppercase tracking-wide text-slate-500">
-                        {driver.benchmark}
-                      </p>
-
-                      <p className="mt-3 text-sm leading-6 text-slate-600">
-                        {driver.explanation}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className={revealClass(resultsVisible, "delay-[200ms]")}>
+            <div className={revealClass(resultsVisible, "delay-[280ms]")}>
               <ScoreBars
                 pillarScores={result.pillarScores}
                 benchmarkBars={benchmarkBars}
@@ -717,125 +725,87 @@ export default function Page() {
               />
             </div>
 
-            <div className={revealClass(resultsVisible, "delay-[280ms]")}>
-              <div className="grid gap-8 xl:grid-cols-[1.2fr_0.8fr]">
-                <div className="space-y-8">
-                  <div className="rounded-[34px] border border-white/75 bg-white/88 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)] backdrop-blur">
-                    <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
-                      Structural Interpretation
-                    </h3>
+            <div className={revealClass(resultsVisible, "delay-[340ms]")}>
+              <div className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
+                <div className="rounded-[30px] border border-slate-200/70 bg-white p-6 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
+                  <h3 className="text-2xl font-semibold tracking-[-0.04em] text-slate-950">
+                    Structural Interpretation
+                  </h3>
 
-                    <div className="mt-4 space-y-4 text-sm leading-7 text-slate-700">
-                      <p>{result.summary}</p>
-                      <p>{result.urgency}</p>
-                      <p>
-                        Most teams attempt to fix this with more pipeline, more hiring, or
-                        more founder intervention. The issue is structural, not
-                        effort-driven.
-                      </p>
-                    </div>
+                  <div className="mt-4 space-y-4 text-sm leading-7 text-slate-700">
+                    <p>{result.summary}</p>
+                    <p>{result.urgency}</p>
+                    <p>
+                      Most teams attempt to fix this with more pipeline, more hiring, or
+                      more founder intervention. The issue is structural, not effort-driven.
+                    </p>
+                  </div>
 
-                    <div className="mt-6 rounded-[26px] border border-slate-200 bg-slate-50/80 p-5">
-                      <div className="flex items-center gap-2">
-                        <AlertTriangle className="h-4 w-4 text-slate-700" />
-                        <p className="text-sm font-semibold text-slate-900">
-                          Recommended next step
-                        </p>
-                      </div>
-
-                      <p className="mt-3 text-sm leading-6 text-slate-700">
-                        {result.recommendedNextStep}
-                      </p>
-
-                      <div className="mt-4 flex flex-wrap gap-3">
-                        <a
-                          href={bookingUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(15,23,42,0.16)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_14px_30px_rgba(15,23,42,0.2)]"
-                        >
-                          Book Revenue Architecture Review
-                          <ArrowRight className="h-4 w-4" />
-                        </a>
-
-                        <button
-                          onClick={handleCopyTalkTrack}
-                          className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md"
-                        >
-                          Copy Live Demo Script
-                        </button>
-                      </div>
-
-                      <p className="mt-3 text-xs leading-5 text-slate-500">
-                        In 30 minutes, we’ll validate where this exposure is actually coming
-                        from and whether it’s worth fixing now.
-                      </p>
-                    </div>
-
-                    <div className="mt-6 rounded-[26px] border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-5 shadow-sm">
+                  <div className="mt-6 rounded-[24px] border border-slate-200 bg-slate-50/80 p-5">
+                    <div className="flex items-center gap-2">
+                      <AlertTriangle className="h-4 w-4 text-slate-700" />
                       <p className="text-sm font-semibold text-slate-900">
-                        What happens in the full diagnostic
+                        Recommended next step
                       </p>
-                      <div className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-                        <p>1. Revenue mix, concentration, and margin review</p>
-                        <p>2. Founder and revenue leader interviews</p>
-                        <p>3. Four-pillar structural analysis</p>
-                        <p>4. Executive readout and 90-day stabilization roadmap</p>
-                      </div>
                     </div>
 
-                    <div className="mt-6 rounded-[26px] border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-5 shadow-sm">
-                      <p className="text-sm font-semibold text-slate-900">
-                        Live demo talk track
-                      </p>
-                      <p className="mt-3 text-sm leading-7 text-slate-700">
-                        {result.liveDemoScript}
-                      </p>
+                    <p className="mt-3 text-sm leading-6 text-slate-700">
+                      {result.recommendedNextStep}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      <a
+                        href={bookingUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(15,23,42,0.16)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_14px_30px_rgba(15,23,42,0.2)]"
+                      >
+                        Book Revenue Architecture Review
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
+
+                      <button
+                        onClick={handleCopyTalkTrack}
+                        className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md"
+                      >
+                        Copy Live Demo Script
+                      </button>
                     </div>
+
+                    <p className="mt-3 text-xs leading-5 text-slate-500">
+                      In 30 minutes, we’ll validate where this exposure is actually coming
+                      from and whether it’s worth fixing now.
+                    </p>
                   </div>
                 </div>
 
-                <div className="space-y-8">
-                  <div className="rounded-[34px] border border-white/75 bg-white/88 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)] backdrop-blur">
-                    <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
-                      Top Risks
+                <div className="space-y-6">
+                  <div className="rounded-[30px] border border-slate-200/70 bg-white p-6 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
+                    <h3 className="text-2xl font-semibold tracking-[-0.04em] text-slate-950">
+                      What happens in the full diagnostic
                     </h3>
-
-                    <div className="mt-4 space-y-3">
-                      {result.topRisks.map((risk) => (
-                        <div
-                          key={risk}
-                          className="rounded-[22px] border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-4 text-sm leading-6 text-slate-700 shadow-sm"
-                        >
-                          {risk}
-                        </div>
-                      ))}
+                    <div className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
+                      <DiagnosticStep index="01" text="Revenue mix, concentration, and margin review" />
+                      <DiagnosticStep index="02" text="Founder and revenue leader interviews" />
+                      <DiagnosticStep index="03" text="Four-pillar structural analysis" />
+                      <DiagnosticStep index="04" text="Executive readout and 90-day stabilization roadmap" />
                     </div>
                   </div>
 
-                  <div className="rounded-[34px] border border-white/75 bg-white/88 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)] backdrop-blur">
-                    <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
-                      Action Trigger
+                  <div className="rounded-[30px] border border-slate-200/70 bg-white p-6 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
+                    <h3 className="text-2xl font-semibold tracking-[-0.04em] text-slate-950">
+                      Live demo talk track
                     </h3>
-
-                    <p className="mt-3 text-sm leading-6 text-slate-700">
-                      This snapshot is designed to identify whether growth is being supported
-                      by durable revenue architecture — or whether fragility is accumulating
-                      beneath the numbers.
-                    </p>
-
-                    <p className="mt-3 text-sm leading-6 text-slate-700">
-                      The full diagnostic validates where that exposure is actually coming
-                      from across concentration, manager accountability, coverage, and margin
-                      construction.
+                    <p className="mt-4 text-sm leading-7 text-slate-700">
+                      {result.liveDemoScript}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className={revealClass(resultsVisible, "delay-[340ms]")}>
-              <div className="rounded-[24px] border border-white/70 bg-white/75 px-4 py-3 text-center text-xs tracking-[0.08em] text-slate-500 shadow-sm backdrop-blur">
+            <div className={revealClass(resultsVisible, "delay-[400ms]")}>
+              <div className="rounded-[22px] border border-slate-200/70 bg-white/80 px-4 py-3 text-center text-xs tracking-[0.08em] text-slate-500 shadow-sm">
                 REVENUE FRAGILITY SNAPSHOT · REVENUE ARCHITECTURE™
               </div>
             </div>
@@ -873,6 +843,140 @@ function StepPill({ number, active, complete, label }) {
   );
 }
 
+function DashboardHeroCard({ companyName, profileType, summary, riskBand }) {
+  return (
+    <div className="relative overflow-hidden rounded-[30px] border border-slate-200/70 bg-[linear-gradient(135deg,#0f172a_0%,#111827_60%,#1e293b_100%)] p-6 text-white shadow-[0_18px_50px_rgba(15,23,42,0.18)]">
+      <div className="pointer-events-none absolute -right-12 -top-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
+      <div className="pointer-events-none absolute -left-10 bottom-0 h-32 w-32 rounded-full bg-rose-400/10 blur-3xl" />
+
+      <div className="relative">
+        <div className="mb-4 flex flex-wrap items-center gap-2">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/80">
+            <Sparkles className="h-3.5 w-3.5" />
+            Executive Snapshot
+          </div>
+          <div className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/80">
+            {riskBand}
+          </div>
+        </div>
+
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">
+          Assessment for
+        </p>
+        <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">
+          {companyName}
+        </h2>
+
+        <div className="mt-4 inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1 text-sm font-medium text-white/90">
+          {profileType}
+        </div>
+
+        <p className="mt-5 max-w-2xl text-sm leading-7 text-white/75">{summary}</p>
+      </div>
+    </div>
+  );
+}
+
+function TopRibbon({ evLow, evHigh, profileType, forecastAccuracy }) {
+  return (
+    <div className="grid gap-4 lg:grid-cols-3">
+      <RibbonCard
+        icon={<Landmark className="h-4 w-4" />}
+        label="Enterprise Value Exposure"
+        value={`${formatCurrency(evLow)}–${formatCurrency(evHigh)}`}
+        hint="Modeled structural compression if left uncorrected"
+      />
+      <RibbonCard
+        icon={<Building2 className="h-4 w-4" />}
+        label="Operating Profile"
+        value={profileType}
+        hint="Current revenue-system posture"
+      />
+      <RibbonCard
+        icon={forecastAccuracy >= 80 ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
+        label="Forecast Signal"
+        value={`${forecastAccuracy}% accuracy`}
+        hint="Current visibility into the number"
+      />
+    </div>
+  );
+}
+
+function RibbonCard({ icon, label, value, hint }) {
+  return (
+    <div className="rounded-[24px] border border-slate-200/70 bg-white p-4 shadow-[0_12px_30px_rgba(15,23,42,0.05)]">
+      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+        {icon}
+        {label}
+      </div>
+      <div className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-slate-950">
+        {value}
+      </div>
+      <p className="mt-1 text-sm leading-6 text-slate-600">{hint}</p>
+    </div>
+  );
+}
+
+function SignalsPanel({ topRisks, revenueAtRisk, marginLeakage }) {
+  return (
+    <div className="rounded-[30px] border border-slate-200/70 bg-white p-6 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
+      <div className="flex items-center gap-3">
+        <div className="rounded-2xl bg-slate-950 p-2 text-white shadow-md">
+          <ShieldAlert className="h-5 w-5" />
+        </div>
+        <div>
+          <h3 className="text-2xl font-semibold tracking-[-0.04em] text-slate-950">
+            Exposure Signals
+          </h3>
+          <p className="mt-1 text-sm leading-6 text-slate-600">
+            The clearest patterns surfaced by the current model.
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-3">
+        {topRisks.map((risk) => (
+          <div
+            key={risk}
+            className="rounded-[20px] border border-slate-100 bg-slate-50/80 p-4 text-sm leading-6 text-slate-700"
+          >
+            {risk}
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        <MiniStat label="Revenue at risk" value={formatCurrency(revenueAtRisk)} />
+        <MiniStat label="Margin leakage" value={formatCurrency(marginLeakage)} />
+      </div>
+    </div>
+  );
+}
+
+function MiniStat({ label, value }) {
+  return (
+    <div className="rounded-[20px] border border-slate-100 bg-[linear-gradient(180deg,rgba(248,250,252,0.9)_0%,rgba(255,255,255,1)_100%)] p-4 shadow-sm">
+      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+        {label}
+      </p>
+      <p className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-slate-950">
+        {value}
+      </p>
+    </div>
+  );
+}
+
+function DiagnosticStep({ index, text }) {
+  return (
+    <div className="flex items-start gap-3 rounded-[20px] border border-slate-100 bg-slate-50/80 p-4">
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-950 text-xs font-semibold text-white">
+        {index}
+      </div>
+      <p className="pt-1 text-sm leading-6 text-slate-700">{text}</p>
+    </div>
+  );
+}
+
 function MetricCard({ title, value, subtitle, accent, icon }) {
   const accents = {
     rose: "border-rose-100 bg-[linear-gradient(180deg,rgba(255,241,242,0.95)_0%,rgba(255,255,255,1)_100%)]",
@@ -884,41 +988,44 @@ function MetricCard({ title, value, subtitle, accent, icon }) {
   return (
     <div
       className={cn(
-        "rounded-[28px] border p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_rgba(15,23,42,0.08)]",
+        "flex min-h-[220px] flex-col rounded-[28px] border p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_rgba(15,23,42,0.08)]",
         accents[accent]
       )}
     >
-      <div className="flex items-center gap-2 text-sm font-medium text-slate-700">
-        <div className="rounded-xl bg-white p-2 shadow-sm ring-1 ring-slate-100">
+      <div className="flex min-h-[56px] items-start gap-3 text-sm font-medium text-slate-700">
+        <div className="mt-0.5 rounded-xl bg-white p-2 shadow-sm ring-1 ring-slate-100">
           {icon}
         </div>
-        {title}
+        <div className="max-w-[180px] leading-6">{title}</div>
       </div>
 
-      <div className="mt-5 text-4xl font-semibold tracking-[-0.05em] text-slate-950">
+      <div className="mt-6 break-words text-[clamp(2rem,2.2vw,3rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-slate-950">
         {value}
       </div>
 
-      <p className="mt-2 text-sm leading-6 text-slate-600">{subtitle}</p>
+      <p className="mt-4 text-sm leading-6 text-slate-600">{subtitle}</p>
     </div>
   );
 }
 
 function NumberField({ label, value, onChange, prefix, suffix }) {
   return (
-    <div>
-      <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+    <div className="flex flex-col">
+      <label className="mb-2 min-h-[36px] text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
         {label}
       </label>
-      <div className="group flex items-center rounded-2xl border border-slate-200 bg-white px-3 py-3 shadow-sm transition duration-200 hover:border-slate-300 hover:shadow-md focus-within:border-slate-900 focus-within:shadow-md">
-        {prefix ? <span className="mr-2 text-sm text-slate-500">{prefix}</span> : null}
+
+      <div className="group flex h-[54px] items-center rounded-2xl border border-slate-200 bg-white px-3 py-3 shadow-sm transition duration-200 hover:border-slate-300 hover:shadow-md focus-within:border-slate-900 focus-within:shadow-md">
+        {prefix ? <span className="mr-2 shrink-0 text-sm text-slate-500">{prefix}</span> : null}
+
         <input
           type="number"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
+          className="min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
         />
-        {suffix ? <span className="ml-2 text-sm text-slate-500">{suffix}</span> : null}
+
+        {suffix ? <span className="ml-2 shrink-0 text-sm text-slate-500">{suffix}</span> : null}
       </div>
     </div>
   );
