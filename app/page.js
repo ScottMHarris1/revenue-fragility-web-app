@@ -288,23 +288,27 @@ export default function Page() {
   }
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_#ffffff_0%,_#f8fafc_35%,_#eef2f7_100%)] text-slate-900">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,255,255,1)_0%,_rgba(248,250,252,1)_30%,_rgba(238,242,247,1)_100%)] text-slate-900">
       <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-12">
-        <section className="relative overflow-hidden rounded-[36px] border border-white/60 bg-white/85 p-6 shadow-[0_12px_50px_rgba(15,23,42,0.08)] backdrop-blur md:p-10">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.95),_rgba(255,255,255,0))]" />
+        <section className="relative overflow-hidden rounded-[40px] border border-white/70 bg-white/85 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.10)] backdrop-blur md:p-10">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.98),_rgba(255,255,255,0))]" />
+          <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-rose-100/40 blur-3xl" />
+          <div className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-slate-200/30 blur-3xl" />
 
           <div className="relative flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
             <div className="max-w-4xl">
-              <div className="mb-3 flex flex-wrap gap-2">
-                <div className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm">
-                  Revenue Architecture
+              <div className="mb-4 flex flex-wrap items-center gap-3">
+                <div className="inline-flex h-11 items-center rounded-2xl border border-slate-200 bg-white px-4 shadow-sm">
+                  <span className="text-sm font-semibold tracking-[-0.03em] text-slate-900">
+                    Revenue Architecture™
+                  </span>
                 </div>
                 <div className="inline-flex rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-medium text-rose-700">
                   Built for founder-led agencies from $10M–$50M
                 </div>
               </div>
 
-              <h1 className="text-4xl font-semibold leading-[0.95] tracking-[-0.05em] text-slate-950 md:text-6xl">
+              <h1 className="text-4xl font-semibold leading-[0.92] tracking-[-0.06em] text-slate-950 md:text-6xl">
                 Is Your Revenue System Quietly Breaking Under Growth?
               </h1>
 
@@ -320,7 +324,7 @@ export default function Page() {
                 onClick={handleLoadSample}
                 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md"
               >
-                Load Sample
+                View Example Agency
               </button>
 
               <button
@@ -342,8 +346,8 @@ export default function Page() {
           </div>
         </section>
 
-        <div className="mt-8 grid gap-8 xl:grid-cols-[360px_minmax(0,1fr)]">
-          <aside className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
+        <div className="mt-8 grid gap-8 xl:grid-cols-[360px_1px_minmax(0,1fr)]">
+          <aside className="rounded-[32px] border border-white/75 bg-white/88 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)] backdrop-blur">
             <div className="mb-5">
               <h2 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
                 Assessment Inputs
@@ -475,8 +479,10 @@ export default function Page() {
             </div>
           </aside>
 
+          <div className="hidden rounded-full bg-gradient-to-b from-transparent via-slate-200/70 to-transparent xl:block" />
+
           <section className="space-y-8">
-            <div className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
+            <div className="rounded-[32px] border border-white/75 bg-white/88 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)] backdrop-blur">
               <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                 <div className="max-w-3xl">
                   <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -554,7 +560,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
+            <div className="rounded-[32px] border border-white/75 bg-white/88 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)] backdrop-blur">
               <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
                 Driver Analysis
               </h3>
@@ -608,7 +614,7 @@ export default function Page() {
 
             <div className="grid gap-8 xl:grid-cols-[1.2fr_0.8fr]">
               <div className="space-y-8">
-                <div className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
+                <div className="rounded-[32px] border border-white/75 bg-white/88 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)] backdrop-blur">
                   <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
                     Structural Interpretation
                   </h3>
@@ -684,7 +690,7 @@ export default function Page() {
               </div>
 
               <div className="space-y-8">
-                <div className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
+                <div className="rounded-[32px] border border-white/75 bg-white/88 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)] backdrop-blur">
                   <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
                     Top Risks
                   </h3>
@@ -701,7 +707,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
+                <div className="rounded-[32px] border border-white/75 bg-white/88 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.07)] backdrop-blur">
                   <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
                     Action Trigger
                   </h3>
@@ -721,8 +727,8 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="rounded-[24px] border border-white/70 bg-white/70 px-4 py-3 text-center text-xs text-slate-500 shadow-sm backdrop-blur">
-              v3.0 – Revenue Fragility Snapshot · Revenue Architecture™
+            <div className="rounded-[24px] border border-white/70 bg-white/75 px-4 py-3 text-center text-xs tracking-[0.08em] text-slate-500 shadow-sm backdrop-blur">
+              REVENUE FRAGILITY SNAPSHOT · REVENUE ARCHITECTURE™
             </div>
           </section>
         </div>
@@ -733,25 +739,27 @@ export default function Page() {
 
 function MetricCard({ title, value, subtitle, accent, icon }) {
   const accents = {
-    rose: "border-rose-100 bg-gradient-to-br from-rose-50 via-white to-white",
-    amber: "border-amber-100 bg-gradient-to-br from-amber-50 via-white to-white",
-    yellow: "border-yellow-100 bg-gradient-to-br from-yellow-50 via-white to-white",
-    slate: "border-slate-100 bg-gradient-to-br from-slate-50 via-white to-white",
+    rose: "border-rose-100 bg-[linear-gradient(180deg,rgba(255,241,242,0.95)_0%,rgba(255,255,255,1)_100%)]",
+    amber: "border-amber-100 bg-[linear-gradient(180deg,rgba(255,251,235,0.95)_0%,rgba(255,255,255,1)_100%)]",
+    yellow: "border-yellow-100 bg-[linear-gradient(180deg,rgba(254,252,232,0.95)_0%,rgba(255,255,255,1)_100%)]",
+    slate: "border-slate-100 bg-[linear-gradient(180deg,rgba(248,250,252,0.95)_0%,rgba(255,255,255,1)_100%)]",
   };
 
   return (
     <div
       className={cn(
-        "rounded-[28px] border p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)]",
+        "rounded-[28px] border p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_rgba(15,23,42,0.08)]",
         accents[accent]
       )}
     >
       <div className="flex items-center gap-2 text-sm font-medium text-slate-700">
-        <div className="rounded-xl bg-white/80 p-2 shadow-sm">{icon}</div>
+        <div className="rounded-xl bg-white p-2 shadow-sm ring-1 ring-slate-100">
+          {icon}
+        </div>
         {title}
       </div>
 
-      <div className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-slate-950">
+      <div className="mt-5 text-4xl font-semibold tracking-[-0.05em] text-slate-950">
         {value}
       </div>
 
