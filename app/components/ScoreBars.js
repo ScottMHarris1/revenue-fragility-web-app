@@ -8,7 +8,7 @@ export default function ScoreBars({
 }) {
   return (
     <div className="grid gap-8 xl:grid-cols-[1.15fr_0.85fr]">
-      <div className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+      <div className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
         <div className="flex items-start justify-between gap-4">
           <div>
             <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
@@ -19,7 +19,7 @@ export default function ScoreBars({
             </p>
           </div>
 
-          <div className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
+          <div className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
             Structural Scorecard
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function ScoreBars({
         </div>
       </div>
 
-      <div className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+      <div className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
         <div className="flex items-start justify-between gap-4">
           <div>
             <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
@@ -70,7 +70,7 @@ export default function ScoreBars({
             </p>
           </div>
 
-          <div className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
+          <div className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
             Current vs Target
           </div>
         </div>
