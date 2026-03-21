@@ -21,29 +21,32 @@ export async function POST(req) {
       records: [
         {
           fields: {
-            "Company Name": body.companyName,
-            "Work Email": body.workEmail,
-            "Annual Revenue": body.annualRevenue,
-            "Top 3 Accounts %": body.top3AccountsPct,
-            "Average Gross Margin %": body.avgGrossMarginPct,
-            "Target Margin %": body.targetMarginPct,
-            "Founder Influenced Revenue %": body.founderInfluencedRevenuePct,
-            "Forecast Accuracy %": body.forecastAccuracyPct,
-            "Seller Count": body.sellersCount,
-            "Manager Count": body.managersCount,
-            "Overall Score": body.overallScore,
-            "Risk Band": body.riskBand,
-            "Profile Type": body.profileType,
-            "Revenue At Risk": body.revenueAtRisk,
-            "Margin Leakage": body.marginLeakage,
-            "Predictability Score": body.predictabilityScore,
-            "EV Compression Low": body.evCompressionLow,
-            "EV Compression High": body.evCompressionHigh,
-            "Top Risks": body.topRisks.join(" | "),
-            "Recommended Next Step": body.recommendedNextStep,
-            "Live Demo Script": body.liveDemoScript,
-            Summary: body.summary,
-            Source: body.source || "Revenue Fragility Snapshot",
+            "Company Name": body.companyName || "",
+            "Work Email": body.workEmail || "",
+            "Annual Revenue": body.annualRevenue || 0,
+            "Top 3 Accounts %": body.top3AccountsPct || 0,
+            "Average Gross Margin %": body.avgGrossMarginPct || 0,
+            "Target Margin %": body.targetMarginPct || 0,
+            "Founder Influenced Revenue %": body.founderInfluencedRevenuePct || 0,
+            "Forecast Accuracy %": body.forecastAccuracyPct || 0,
+            "Seller Count": body.sellersCount || 0,
+            "Manager Count": body.managersCount || 0,
+            "Overall Score": body.overallScore || 0,
+            "Risk Band": body.riskBand || "",
+            "Profile Type": body.profileType || "",
+            "Revenue At Risk": body.revenueAtRisk || 0,
+            "Margin Leakage": body.marginLeakage || 0,
+            "Predictability Score": body.predictabilityScore || 0,
+            "EV Compression Low": body.evCompressionLow || 0,
+            "EV Compression High": body.evCompressionHigh || 0,
+            "Top Risks": Array.isArray(body.topRisks) ? body.topRisks.join(" | ") : "",
+            "Recommended Next Step": body.recommendedNextStep || "",
+            "Live Demo Script": body.liveDemoScript || "",
+            "Summary": body.summary || "",
+            "Source": body.source || "Revenue Fragility Snapshot",
+            "UTM Source": body.utmSource || "",
+            "Lead Status": "New Snapshot Lead",
+            "Booked?": false,
             "Created At": new Date().toISOString(),
           },
         },
@@ -73,7 +76,10 @@ export async function POST(req) {
       );
     }
 
-    return NextResponse.json({ ok: true, record: airtableJson.records?.[0] });
+    return NextResponse.json({
+      ok: true,
+      record: airtableJson.records?.[0] || null,
+    });
   } catch (error) {
     return NextResponse.json(
       {
