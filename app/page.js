@@ -289,9 +289,11 @@ export default function Page() {
 
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,_#ffffff_0%,_#f8fafc_35%,_#eef2f7_100%)] text-slate-900">
-      <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
-        <section className="rounded-[32px] border border-white/60 bg-white/80 p-6 shadow-[0_10px_40px_rgba(15,23,42,0.08)] backdrop-blur md:p-8">
-          <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+      <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-12">
+        <section className="relative overflow-hidden rounded-[36px] border border-white/60 bg-white/85 p-6 shadow-[0_12px_50px_rgba(15,23,42,0.08)] backdrop-blur md:p-10">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.95),_rgba(255,255,255,0))]" />
+
+          <div className="relative flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
             <div className="max-w-4xl">
               <div className="mb-3 flex flex-wrap gap-2">
                 <div className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm">
@@ -302,7 +304,7 @@ export default function Page() {
                 </div>
               </div>
 
-              <h1 className="text-4xl font-semibold tracking-[-0.04em] text-slate-950 md:text-6xl">
+              <h1 className="text-4xl font-semibold leading-[0.95] tracking-[-0.05em] text-slate-950 md:text-6xl">
                 Is Your Revenue System Quietly Breaking Under Growth?
               </h1>
 
@@ -316,14 +318,14 @@ export default function Page() {
             <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={handleLoadSample}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md"
               >
                 Load Sample
               </button>
 
               <button
                 onClick={handleReset}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md"
               >
                 <RefreshCcw className="h-4 w-4" />
                 Reset
@@ -331,7 +333,7 @@ export default function Page() {
 
               <button
                 onClick={handleExportPdf}
-                className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(15,23,42,0.15)] transition hover:-translate-y-0.5 hover:bg-slate-800"
+                className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(15,23,42,0.16)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_14px_30px_rgba(15,23,42,0.2)]"
               >
                 <Download className="h-4 w-4" />
                 Export PDF Preview
@@ -341,7 +343,7 @@ export default function Page() {
         </section>
 
         <div className="mt-8 grid gap-8 xl:grid-cols-[360px_minmax(0,1fr)]">
-          <aside className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+          <aside className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
             <div className="mb-5">
               <h2 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
                 Assessment Inputs
@@ -353,26 +355,26 @@ export default function Page() {
 
             <div className="space-y-4">
               <div>
-                <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">
+                <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
                   Company name
                 </label>
                 <input
                   value={inputs.companyName}
                   onChange={(e) => updateTextField("companyName", e.target.value)}
                   placeholder="Your Agency"
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-slate-900"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none shadow-sm transition duration-200 hover:border-slate-300 hover:shadow-md focus:border-slate-900 focus:shadow-md"
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">
+                <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
                   Work email
                 </label>
                 <input
                   value={inputs.workEmail}
                   onChange={(e) => updateTextField("workEmail", e.target.value)}
                   placeholder="name@company.com"
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-slate-900"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none shadow-sm transition duration-200 hover:border-slate-300 hover:shadow-md focus:border-slate-900 focus:shadow-md"
                 />
               </div>
 
@@ -430,7 +432,7 @@ export default function Page() {
               <button
                 onClick={handleSaveLead}
                 disabled={submitting || !inputs.workEmail}
-                className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(15,23,42,0.12)] transition hover:-translate-y-0.5 hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(15,23,42,0.16)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_14px_30px_rgba(15,23,42,0.2)] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {submitting ? (
                   <>
@@ -474,7 +476,7 @@ export default function Page() {
           </aside>
 
           <section className="space-y-8">
-            <div className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+            <div className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
               <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                 <div className="max-w-3xl">
                   <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -552,7 +554,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+            <div className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
               <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
                 Driver Analysis
               </h3>
@@ -606,7 +608,7 @@ export default function Page() {
 
             <div className="grid gap-8 xl:grid-cols-[1.2fr_0.8fr]">
               <div className="space-y-8">
-                <div className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+                <div className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
                   <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
                     Structural Interpretation
                   </h3>
@@ -638,7 +640,7 @@ export default function Page() {
                         href={bookingUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(15,23,42,0.15)] transition hover:-translate-y-0.5 hover:bg-slate-800"
+                        className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(15,23,42,0.16)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_14px_30px_rgba(15,23,42,0.2)]"
                       >
                         Book Revenue Architecture Review
                         <ArrowRight className="h-4 w-4" />
@@ -646,7 +648,7 @@ export default function Page() {
 
                       <button
                         onClick={handleCopyTalkTrack}
-                        className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50"
+                        className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md"
                       >
                         Copy Live Demo Script
                       </button>
@@ -682,7 +684,7 @@ export default function Page() {
               </div>
 
               <div className="space-y-8">
-                <div className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+                <div className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
                   <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
                     Top Risks
                   </h3>
@@ -699,7 +701,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="rounded-[30px] border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+                <div className="rounded-[32px] border border-white/70 bg-white/90 p-6 shadow-[0_12px_36px_rgba(15,23,42,0.06)] backdrop-blur">
                   <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
                     Action Trigger
                   </h3>
@@ -719,9 +721,9 @@ export default function Page() {
               </div>
             </div>
 
-            <p className="pb-2 text-center text-xs text-slate-500">
-              v2.1 – Revenue Fragility Snapshot
-            </p>
+            <div className="rounded-[24px] border border-white/70 bg-white/70 px-4 py-3 text-center text-xs text-slate-500 shadow-sm backdrop-blur">
+              v3.0 – Revenue Fragility Snapshot · Revenue Architecture™
+            </div>
           </section>
         </div>
       </div>
@@ -731,21 +733,28 @@ export default function Page() {
 
 function MetricCard({ title, value, subtitle, accent, icon }) {
   const accents = {
-    rose: "border-rose-100 bg-gradient-to-br from-rose-50 to-white",
-    amber: "border-amber-100 bg-gradient-to-br from-amber-50 to-white",
-    yellow: "border-yellow-100 bg-gradient-to-br from-yellow-50 to-white",
-    slate: "border-slate-100 bg-gradient-to-br from-slate-50 to-white",
+    rose: "border-rose-100 bg-gradient-to-br from-rose-50 via-white to-white",
+    amber: "border-amber-100 bg-gradient-to-br from-amber-50 via-white to-white",
+    yellow: "border-yellow-100 bg-gradient-to-br from-yellow-50 via-white to-white",
+    slate: "border-slate-100 bg-gradient-to-br from-slate-50 via-white to-white",
   };
 
   return (
-    <div className={cn("rounded-[26px] border p-5 shadow-sm", accents[accent])}>
+    <div
+      className={cn(
+        "rounded-[28px] border p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)]",
+        accents[accent]
+      )}
+    >
       <div className="flex items-center gap-2 text-sm font-medium text-slate-700">
-        {icon}
+        <div className="rounded-xl bg-white/80 p-2 shadow-sm">{icon}</div>
         {title}
       </div>
-      <div className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-slate-950">
+
+      <div className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-slate-950">
         {value}
       </div>
+
       <p className="mt-2 text-sm leading-6 text-slate-600">{subtitle}</p>
     </div>
   );
@@ -754,16 +763,16 @@ function MetricCard({ title, value, subtitle, accent, icon }) {
 function NumberField({ label, value, onChange, prefix, suffix }) {
   return (
     <div>
-      <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">
+      <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
         {label}
       </label>
-      <div className="flex items-center rounded-2xl border border-slate-200 bg-white px-3 py-3 shadow-sm">
+      <div className="group flex items-center rounded-2xl border border-slate-200 bg-white px-3 py-3 shadow-sm transition duration-200 hover:border-slate-300 hover:shadow-md focus-within:border-slate-900 focus-within:shadow-md">
         {prefix ? <span className="mr-2 text-sm text-slate-500">{prefix}</span> : null}
         <input
           type="number"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-transparent text-sm outline-none"
+          className="w-full bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
         />
         {suffix ? <span className="ml-2 text-sm text-slate-500">{suffix}</span> : null}
       </div>
