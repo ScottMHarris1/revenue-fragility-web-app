@@ -48,6 +48,8 @@ const defaultInputs = {
 const bookingUrl =
   process.env.NEXT_PUBLIC_BOOKING_URL || "https://calendly.com/your-link";
 
+const landingPageUrl = "https://revenue-architecture-site.vercel.app/";
+
 function cn(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -168,6 +170,20 @@ export default function Page() {
     } finally {
       setSubmitting(false);
     }
+  }
+
+  function handleReviewResultsTogether() {
+    const params = new URLSearchParams({
+      source: "fragility-snapshot",
+      fragilityScore: String(result.overallScore ?? ""),
+      concentrationRisk: String(inputs.top3AccountsPct ?? ""),
+      founderDependency: String(inputs.founderInfluencedRevenuePct ?? ""),
+      forecastRisk: String(inputs.forecastAccuracyPct ?? ""),
+      marginRisk: String(inputs.avgGrossMarginPct ?? ""),
+      evRisk: String(result.evCompressionHigh ?? ""),
+    });
+
+    window.location.href = `${landingPageUrl}?${params.toString()}`;
   }
 
   function handleExportPdf() {
@@ -567,8 +583,7 @@ export default function Page() {
 
                   {saved && (
                     <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
-                      Assessment saved. Your snapshot is ready, and you can now book a Revenue
-                      Architecture review.
+                      Assessment saved. Your snapshot is ready, and you can now review the results in the context of a full Revenue Architecture diagnostic.
                     </div>
                   )}
 
@@ -750,19 +765,17 @@ export default function Page() {
                     </div>
 
                     <p className="mt-3 text-sm leading-6 text-slate-700">
-                      {result.recommendedNextStep}
+                      If you want to pressure-test these results in the context of your agency, this is the next step.
                     </p>
 
                     <div className="mt-4 flex flex-wrap gap-3">
-                      <a
-                        href={bookingUrl}
-                        target="_blank"
-                        rel="noreferrer"
+                      <button
+                        onClick={handleReviewResultsTogether}
                         className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(15,23,42,0.16)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_14px_30px_rgba(15,23,42,0.2)]"
                       >
-                        Book Revenue Architecture Review
+                        Review Results Together
                         <ArrowRight className="h-4 w-4" />
-                      </a>
+                      </button>
 
                       <button
                         onClick={handleCopyTalkTrack}
@@ -773,8 +786,7 @@ export default function Page() {
                     </div>
 
                     <p className="mt-3 text-xs leading-5 text-slate-500">
-                      In 30 minutes, we’ll validate where this exposure is actually coming
-                      from and whether it’s worth fixing now.
+                      This carries your Snapshot results into the diagnostic page so the conversation starts with context.
                     </p>
                   </div>
                 </div>
