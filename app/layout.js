@@ -1,23 +1,33 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
 
 export const metadata = {
-  title: "Revenue Fragility Snapshot",
+  title: "Revenue Architecture Diagnostic | Scott Michael Harris",
   description:
-    "Quantify unstable revenue, margin leakage, valuation pressure, and the operating risks beneath growth.",
+    "For agency founders between $10M–$50M dealing with forecast instability, growth friction, or client concentration. Start with the Revenue Fragility Snapshot or book a private diagnostic discussion.",
+  openGraph: {
+    title: "Revenue Architecture Diagnostic | Scott Michael Harris",
+    description:
+      "Fix the revenue system issues that make agency growth harder than it should be.",
+    url: "https://revenue-architecture-site.vercel.app/",
+    siteName: "Scott Michael Harris",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Revenue Architecture Diagnostic | Scott Michael Harris",
+    description:
+      "Fix the revenue system issues that make agency growth harder than it should be.",
+  },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="min-h-screen bg-slate-50 font-sans text-slate-900 antialiased">
-        {children}
-      </body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }
